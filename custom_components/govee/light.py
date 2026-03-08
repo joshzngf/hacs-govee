@@ -342,7 +342,7 @@ class GoveeLightEntity(LightEntity):
     @property
     def color_temp_kelvin(self) -> int | None:
         """Return the color temperature in Kelvin."""
-        if not getattr(self._device, "support_color_tem", False):
+        if not getattr(self._device, "support_color_temp", False):
             return None
         return getattr(self._device, "color_temp", None)
 
