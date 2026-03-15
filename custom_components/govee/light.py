@@ -155,7 +155,18 @@ class GoveeLightEntity(LightEntity):
     def _state(self):
         """Lights internal state."""
         return self._device  # self._hub.state(self._device)
-
+    
+    @property
+    def color_mode(self) -> ColorMode:
+        """Return the current color mode."""
+        if self._device.support_color and self._device.color:
+            return ColorMode.HS
+        if self._device.support_color_tem and self._device.color_temp:
+            return ColorMode.COLOR_TEMP
+        if self._device.support_brightness:
+            return ColorMode.BRIGHTNESS
+        return ColorMode.ONOFF
+        
     @property
     def supported_features(self):
         """Flag supported features."""
